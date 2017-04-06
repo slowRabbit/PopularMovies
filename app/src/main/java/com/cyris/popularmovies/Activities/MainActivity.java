@@ -6,6 +6,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.cyris.popularmovies.Adapters.MovieAdapter;
 import com.cyris.popularmovies.Model.Movie;
@@ -14,7 +15,7 @@ import com.cyris.popularmovies.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MovieAdapter.MovieItemClickListener{
 
     RecyclerView movieList;
     List<Movie> data;
@@ -36,10 +37,17 @@ public class MainActivity extends AppCompatActivity {
             data.add(m2);
         }
 
-        movieAdapter=new MovieAdapter(data);
+        movieAdapter=new MovieAdapter(data, this);
         GridLayoutManager gridLayoutManager=new GridLayoutManager(this, 2);
         movieList.setAdapter(movieAdapter);
         movieList.setLayoutManager(gridLayoutManager);
+
+    }
+
+    @Override
+    public void onClick(int position) {
+
+        Toast.makeText(this, "Item clicked", Toast.LENGTH_SHORT).show();
 
     }
 }
