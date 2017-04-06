@@ -5,6 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,12 +26,20 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolderC
     TextView tvTitle, tvRating;
     Context context;
     MovieItemClickListener movieItemClickListener;
+    private int lastPosition = -1;
 
     public MovieAdapter(List<Movie> data, MovieItemClickListener movieItemClickListener)
     {
         this.data=data;
         this.movieItemClickListener=movieItemClickListener;
     }
+
+    @Override
+    public void onViewDetachedFromWindow(MovieHolderClass holder) {
+        super.onViewDetachedFromWindow(holder);
+        ((MovieHolderClass)holder).clearAnimation();
+    }
+
 
     @Override
     public MovieHolderClass onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -52,8 +62,27 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolderC
 
         Movie movie=data.get(position);
         holder.Bind(movie);
+        setAnimation(holder.itemView, position);
 
     }
+
+    private void setAnimation(View viewToAnimate, int position)
+    {
+        // If the bound view wasn't previously displayed on screen, it's animated
+        if (position > lastPosition)
+        {
+            Animation animation = AnimationUtils.loadAnimation(context, R.anim.move_up);
+            viewToAnimate.startAnimation(animation);
+            lastPosition = position;
+        }
+        else if(position<lastPosition)
+        {
+            Animation animation = AnimationUtils.loadAnimation(context, R.anim.move_down);
+            viewToAnimate.startAnimation(animation);
+            lastPosition = position;
+        }
+    }
+
 
     @Override
     public int getItemCount() {
@@ -81,6 +110,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolderC
             int position=getAdapterPosition();
             movieItemClickListener.onClick(position);
         }
+
+        public void clearAnimation()
+        {
+            itemView.clearAnimation();
+        }
+
     }
 
 }
