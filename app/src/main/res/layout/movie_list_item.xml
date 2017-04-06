@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     card_view:cardElevation="3dp"
-    card_view:cardCornerRadius="4dp"
+    card_view:cardCornerRadius="3dp"
     android:layout_margin="5dp"
     >
 
@@ -19,12 +19,17 @@
 
     <ImageView
         android:id="@+id/movieposter"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scaleType="centerCrop"
-        android:fitsSystemWindows="true"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:src="@drawable/brothersmovieicon"
+
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+
         />
+
+    <!--android:scaleType="centerCrop"-->
+    <!--android:fitsSystemWindows="true"-->
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="horizontal"

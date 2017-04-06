@@ -22,5 +22,5 @@
     <translate android:fromYDelta="+8%p" android:toYDelta="0"
         android:duration="800"/>
     <alpha android:fromAlpha="0.4" android:toAlpha="1.0"
-        android:duration="400" />
+        android:duration="600" />
 </set>

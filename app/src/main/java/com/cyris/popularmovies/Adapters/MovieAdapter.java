@@ -9,9 +9,17 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
+import com.bumptech.glide.Glide;
+import com.cyris.popularmovies.Extras.AppUrlDetails;
+import com.cyris.popularmovies.Extras.CustomVolleyRequest;
 import com.cyris.popularmovies.Model.Movie;
 import com.cyris.popularmovies.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -22,11 +30,11 @@ import java.util.List;
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolderClass>{
 
     List<Movie> data;
-    ImageView ivMoviePoster;
-    TextView tvTitle, tvRating;
+
     Context context;
     MovieItemClickListener movieItemClickListener;
     private int lastPosition = -1;
+
 
     public MovieAdapter(List<Movie> data, MovieItemClickListener movieItemClickListener)
     {
@@ -91,6 +99,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolderC
 
     class MovieHolderClass extends RecyclerView.ViewHolder implements View.OnClickListener{
 
+        ImageView ivMoviePoster;
+        TextView tvTitle, tvRating;
+        private ImageLoader imageLoader;
+
         public MovieHolderClass(View itemView) {
             super(itemView);
             ivMoviePoster=(ImageView)itemView.findViewById(R.id.movieposter);
@@ -103,6 +115,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolderC
         {
             tvTitle.setText(movie.getTitle());
             tvRating.setText(movie.getVoteAverage());
+
+            AppUrlDetails appUrlDetails=new AppUrlDetails();
+            String imageurl=appUrlDetails.getBaseUrlForImages()+movie.getPosterPath();
+
+            Picasso.with(context).load(imageurl).into(ivMoviePoster);
+            //setImageViewAfterFetchingFromUrl(movie);
+
         }
 
         @Override
