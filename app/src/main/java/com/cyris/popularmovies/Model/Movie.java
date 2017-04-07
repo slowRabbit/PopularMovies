@@ -1,10 +1,12 @@
 package com.cyris.popularmovies.Model;
 
+import java.io.Serializable;
+
 /**
  * Created by cyris on 4/4/17.
  */
 
-public class Movie {
+public class Movie implements Serializable{
 
     String title;
     String releaseDate;

@@ -1,6 +1,7 @@
 package com.cyris.popularmovies.Activities;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -76,7 +77,20 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
     @Override
     public void onClick(int position) {
 
-        Toast.makeText(this, "Item clicked", Toast.LENGTH_SHORT).show();
+        Intent i=new Intent();
+
+        Movie movie=null;
+        if(isPopular)
+        {
+            movie=popularMovieData.get(position);
+        }
+        else
+        {
+            movie=topRatedMovieData.get(position);
+        }
+        i.putExtra("MovieObject", movie);
+        i.setClass(this, MovieDetailActivity.class);
+        startActivity(i);
 
     }
 

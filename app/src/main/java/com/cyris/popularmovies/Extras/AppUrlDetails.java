@@ -7,7 +7,7 @@ package com.cyris.popularmovies.Extras;
 public class AppUrlDetails {
 
     String baseUrlForImages="http://image.tmdb.org/t/p/w300//";
-    String baseUrlForBackdropImage="http://image.tmdb.org/t/p/w500//";
+    String baseUrlForBackdropImage="http://image.tmdb.org/t/p/w1280//";
     String baseUrlForMovieDetails="http://api.themoviedb.org/3/movie/";
     String apiKey="?api_key=10ddbecf738d8e66efa0e9681199ce21";
 

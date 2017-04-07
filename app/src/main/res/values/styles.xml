@@ -31,4 +31,16 @@
         <item name="android:paddingLeft">5dp</item>
     </style>
 
+    <style name="ExpandedAppBar" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="CollapsedAppBar" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textColor">#fff</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+
 </resources>
