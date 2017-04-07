@@ -69,6 +69,8 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         isPopular=true;
         //--
 
+        setTitle("Popular Movies");
+
     }
 
     @Override
@@ -141,6 +143,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
 
                     }
                     popularMovieAdapter.notifyDataSetChanged();
+                    isPopular=!isPopular;
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -180,14 +183,14 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         {
             //popularMovieData is populated in popularMovieAdapter
             movieList.setAdapter(popularMovieAdapter);
-            menu.getItem(0).setIcon(getResources().getDrawable(R.drawable.popular_icon1));
+            menu.getItem(0).setIcon(getResources().getDrawable(R.drawable.toprated_icon1));
             setTitle("Popular Movies");
         }
         else
         {
             //topRated movie data is populated in popularMovieAdapter
             movieList.setAdapter(topRatedMovieAdapter);
-            menu.getItem(0).setIcon(getResources().getDrawable(R.drawable.toprated_icon1));
+            menu.getItem(0).setIcon(getResources().getDrawable(R.drawable.popular_icon1));
             setTitle("Top Rated Movies");
         }
 
